@@ -12,7 +12,7 @@
             <p v-if="product.date">
                 {{ unixToDate(product.date) }}
             </p>
-            <iconChevronDown class="ml-3 w-4 h-4 transition-transform" :class="{ 'rotate-180': showConfig }" @click="handleToggleConfig" />
+            <IconChevronDown class="ml-3 w-4 h-4 transition-transform" :class="{ 'rotate-180': showConfig }" @click="handleToggleConfig" />
         </div>
         <transition name="collapse">
             <div v-if="showConfig" class="overflow-hidden max-h-screen mb-3">

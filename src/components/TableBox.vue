@@ -4,21 +4,8 @@
             <slot name="header">
     
             </slot>
-            <slot :product="products"></slot>
+            <slot></slot>
         </div>
         <slot name="footer"></slot>
     </div>
 </template>
-
-<script setup>
-defineProps({
-    products: {
-        type: Array,
-        default: () => [],
-    }
-})
-</script>
-
-<style lang="scss" scoped>
-
-</style>
