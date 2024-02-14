@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import ButtonComponent from './components/ButtonComponent.vue';
+import ButtonElement from './components/ButtonElement.vue';
 import FormInput from './components/FormInput.vue';
 import TableBox from './components/TableBox.vue';
 import productsData from './assets/mock-data/products.json';
@@ -27,18 +27,19 @@ onMounted(() => {
         <div class="grid max-w-[300px] ml-0 xs:ml-auto">
           <div class="grid xxs:flex gap-2">
             <FormInput type="text" placeholder="Find a Product" class="flex-grow"/>
-            <ButtonComponent>
+            <ButtonElement>
               Search
-            </ButtonComponent>
+            </ButtonElement>
           </div>
           <div class="grid xxs:flex gap-2 mt-2">
             <FormInput type="text" placeholder="Product Name" class="flex-grow"/>
-            <ButtonComponent variant="secondary">
+            <ButtonElement variant="secondary">
               Add Product
-            </ButtonComponent>
+            </ButtonElement>
           </div>
         </div>
       </template>
+
       <template #default>
         <ProductList :products="products" class="mt-4 grid grid-cols-1 gap-x-4 md:grid-cols-2">
           <template #default="{ product }">
@@ -46,6 +47,7 @@ onMounted(() => {
           </template>
         </ProductList>
       </template>
+
       <template #footer>
         Pagination
       </template>

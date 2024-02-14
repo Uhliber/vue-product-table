@@ -26,12 +26,12 @@
                         </div>
                     </div>
                     <div class="flex items-center content-center justify-center gap-4 xxs:grid">
-                        <ButtonComponent sizes="sm">
+                        <ButtonElement sizes="sm">
                             Replace
-                        </ButtonComponent>
-                        <ButtonComponent variant="transparent">
+                        </ButtonElement>
+                        <ButtonElement variant="transparent">
                             Clear
-                        </ButtonComponent>
+                        </ButtonElement>
                     </div>
                 </div>
                 <div class="grid mt-4">
@@ -56,7 +56,7 @@ import { ref } from 'vue';
 import IconChevronDown from './IconChevronDown.vue';
 import FormLabel from './FormLabel.vue';
 import FormInput from './FormInput.vue';
-import ButtonComponent from './ButtonComponent.vue';
+import ButtonElement from './ButtonElement.vue';
 
 defineProps({
     product: {
