@@ -19,7 +19,10 @@ const searchInput = ref('');
 const searchValue = ref('');
 
 onMounted(() => {
-  products.value = productsData;
+  products.value = productsData.map((product, index) => ({
+    ...product,
+    id: index + 1, // adding unique id so we can update easily
+  }));
 });
 
 watch(searchInput, (val) => {
@@ -83,6 +86,14 @@ function handlePageSizeChange(value) {
 function handleSearch() {
   searchValue.value = searchInput.value;
 }
+
+function handleUpdateProduct(product) {
+  const productIndex = products.value.findIndex(p => p.id === product.id);
+
+  if (productIndex !== -1) {
+    products.value[productIndex] = product;
+  }
+}
 </script>
 
 <template>
@@ -112,10 +123,8 @@ function handleSearch() {
       </template>
 
       <template #default>
-        <ProductList :products="filteredProducts[0]" class="mt-4 grid grid-cols-1 gap-x-4 md:grid-cols-2">
-          <template #default="{ product }">
-            <ProductListItem :product="product" />
-          </template>
+        <ProductList :products="filteredProducts[currentPage - 1]" class="mt-4 grid grid-cols-1 gap-x-4 md:grid-cols-2" v-slot="{ product, index }">
+          <ProductListItem :product="product" @update:product="handleUpdateProduct"/>
         </ProductList>
       </template>
 

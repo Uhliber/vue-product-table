@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="(product, index) in products" :key="index" class="h-full">
-            <slot :product="product"></slot>
+            <slot :product="product" :index="index"></slot>
         </div>
     </div>
 </template>

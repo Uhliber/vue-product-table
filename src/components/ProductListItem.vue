@@ -5,7 +5,7 @@
                 <img v-if="product.image" :src="product.image" class="w-full h-full object-contain"/>
                 <div v-else class="w-full h-full bg-neutral-300"></div>
             </div>
-            <div class="rounded-full bg-status-green w-2.5 h-2.5 flex-shrink-0"></div>
+            <StatusIndicator :status="product.status" @click="toggleStatus"/>
             <p class="flex-grow">
                 {{ product.name }}
             </p>
@@ -57,15 +57,26 @@ import IconChevronDown from './IconChevronDown.vue';
 import FormLabel from './FormLabel.vue';
 import FormInput from './FormInput.vue';
 import ButtonElement from './ButtonElement.vue';
+import StatusIndicator from './StatusIndicator.vue';
 
-defineProps({
+const props = defineProps({
     product: {
         type: Object,
         required: true,
     }
 })
 
+const emits = defineEmits(['update:product']);
+
 const showConfig = ref(false);
+const statuses = ['green', 'yellow', 'red'];
+
+function toggleStatus() {
+  const currentStatusIndex = statuses.indexOf(props.product.status);
+  const nextStatusIndex = (currentStatusIndex + 1) % statuses.length;
+  const nextStatus = statuses[nextStatusIndex];
+  emits('update:product', { ...props.product, status: nextStatus });
+}
 
 function unixToDate(unix) {
     if (unix) {
