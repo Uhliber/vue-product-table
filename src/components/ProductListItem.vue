@@ -5,7 +5,7 @@
                 <img v-if="product.image" :src="product.image" class="w-full h-full object-contain"/>
                 <div v-else class="w-full h-full bg-neutral-300"></div>
             </div>
-            <StatusIndicator :status="product.status" @click="toggleStatus"/>
+            <StatusIndicator :status="product.status" @click="toggleStatus" class="cursor-pointer"/>
             <p class="flex-grow">
                 {{ product.name }}
             </p>
