@@ -108,7 +108,7 @@ function handleUpdateProduct(product) {
       <template #header>
         <div class="grid max-w-[300px] ml-0 xs:ml-auto">
           <div class="grid xxs:flex gap-2">
-            <FormInput v-model="searchInput" type="text" placeholder="Find a Product" class="flex-grow"/>
+            <FormInput v-model="searchInput" type="text" placeholder="Find a Product" class="flex-grow" @keyup.enter="handleSearch"/>
             <ButtonElement @click="handleSearch">
               Search
             </ButtonElement>
@@ -123,9 +123,12 @@ function handleUpdateProduct(product) {
       </template>
 
       <template #default>
-        <ProductList :products="filteredProducts[currentPage - 1]" class="mt-4 grid grid-cols-1 gap-x-4 md:grid-cols-2" v-slot="{ product, index }">
+        <ProductList v-if="filteredProducts.length" :products="filteredProducts[currentPage - 1]" class="mt-4 grid grid-cols-1 gap-x-4 md:grid-cols-2" v-slot="{ product, index }">
           <ProductListItem :product="product" @update:product="handleUpdateProduct"/>
         </ProductList>
+        <p v-else class="mt-4 text-center">
+          No product available
+        </p>
       </template>
 
       <template #footer>
